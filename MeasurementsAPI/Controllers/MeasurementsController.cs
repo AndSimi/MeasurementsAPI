@@ -36,10 +36,21 @@ namespace MeasurementsAPI.Controllers
             }
 
             return measurement;
-
-
-
         }
+
+        // GET: api/<MeasurementsController>
+        [HttpGet("{PlantName}")]
+        public ActionResult<List<Measurements>> GetCertificate(string plantName)
+        {
+            var certificate = measurementServices.GetCertificate(plantName);
+            if (certificate == null)
+            {
+                return NotFound($"Certificate for plant: {plantName} not found");
+            }
+            return certificate;
+        }
+
+
 
         // POST api/<MeasurementsController>
         [HttpPost]

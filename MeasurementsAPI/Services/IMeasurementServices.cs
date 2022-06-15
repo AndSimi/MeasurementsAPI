@@ -6,6 +6,7 @@ namespace MeasurementsAPI.Services
     {
         List<Measurements> GetAll();
         Measurements get(string id);
+        List<Measurements> GetCertificate(string plantName);
 
         void create(Measurements measurement);
 
