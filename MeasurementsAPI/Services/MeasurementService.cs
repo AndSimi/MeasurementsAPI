@@ -27,5 +27,10 @@ namespace MeasurementsAPI.Services
         {
             return _measurements.Find(measurements => true).ToList();
         }
+
+        public List<Measurements> GetCertificate(string plantName)
+        {
+            return  _measurements.Find(measurements => measurements.PlantName == plantName).ToList();
+        }
     }
 }
