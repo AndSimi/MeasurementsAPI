@@ -8,6 +8,7 @@ namespace MeasurementsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class MeasurementsController : ControllerBase
     {
         private readonly IMeasurementServices measurementServices;
@@ -18,6 +19,7 @@ namespace MeasurementsAPI.Controllers
         }
 
         // GET: api/<MeasurementsController>
+        //Get Http request used to get all of the measurements
         [HttpGet]
         public ActionResult<List<Measurements>> Get()
         {
@@ -25,6 +27,7 @@ namespace MeasurementsAPI.Controllers
         }
 
         // GET api/<MeasurementsController>/5
+        // Get Http request used to get a single measurement by using it's id to query and find it in the database
         [HttpGet("{id}")]
         public ActionResult<Measurements> Get(string id)
         {
@@ -39,6 +42,7 @@ namespace MeasurementsAPI.Controllers
         }
 
         // GET: api/<MeasurementsController>
+        // Get Http request used to get a list of all measurements for a specific plant, using it's name to query the database
         [HttpGet("{PlantName}")]
         public ActionResult<List<Measurements>> GetCertificate(string plantName)
         {
@@ -53,16 +57,13 @@ namespace MeasurementsAPI.Controllers
 
 
         // POST api/<MeasurementsController>
+        // Post Http request used to post new measurements to database
         [HttpPost]
         public void Post([FromBody] Measurements value)
         {
 
             measurementServices.create(value);
             
-
-
-
-
         }
 
      
