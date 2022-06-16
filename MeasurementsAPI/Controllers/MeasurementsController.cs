@@ -8,7 +8,7 @@ namespace MeasurementsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class MeasurementsController : ControllerBase
     {
         private readonly IMeasurementServices measurementServices;
@@ -31,7 +31,7 @@ namespace MeasurementsAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<Measurements> Get(string id)
         {
-           var measurement = measurementServices.get(id);
+            var measurement = measurementServices.get(id);
 
             if (measurement == null)
             {
@@ -63,9 +63,40 @@ namespace MeasurementsAPI.Controllers
         {
 
             measurementServices.create(value);
-            
+
         }
 
-     
+        // DELETE api/<MeasurementsController>/5
+        // Delete Http request used to check if a measurement with specific id exist, and delete it if it does, otherwise return 404
+        [HttpDelete("{id}")]
+        public void Delete(string id)
+        {
+
+            var measurement = measurementServices.get(id);
+
+            if (measurement == null)
+            {
+                NotFound($"Measurement with id = {id} not found");
+            }else
+            measurementServices.delete(id);
+
+        }
+
+        // PUT api/<MeasurementsController>/5
+        // Put Http request used to check if a measurement with specific id exist, and update it if it does, otherwise return 404
+        [HttpPut("{id}")]
+        public void Put (Measurements newValue, string id)
+        {
+            var measurement = measurementServices.get(id);
+
+            if (measurement == null)
+            {
+                 NotFound($"Measurement with id = {id} not found");
+            }else
+            
+            measurementServices.update(newValue, id);
+        }
+
     }
+
 }

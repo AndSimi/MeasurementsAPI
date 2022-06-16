@@ -6,6 +6,7 @@ using MongoDB.Driver;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//Dependency Injection
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 
 builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
